@@ -1,0 +1,116 @@
+print("Hi!, Welcome to the guessing game!")
+import random
+chosen_num= random.choice(range(100))
+#print(chosen_num)
+#print(type(chosen_num))
+turns_easy=10
+turns_hard = 5
+
+def hard():
+    global turns_hard
+    no_of_turns_availed=5-turns_hard
+    try:
+        guess = int (input ("Please guess the number!"))
+        while turns_hard >= 1:
+            if turns_hard== 1 and guess != chosen_num:
+                print ("You lost")
+                print (f"The correct number is: {chosen_num} ")
+                break
+            elif guess > chosen_num:
+                print ("too high")
+                turns_hard -= 1
+                no_of_turns_availed = 5 - turns_hard
+                print (f"your remaining turns are {turns_hard} ")
+                guess = int (input ("Please guess the number!"))
+                # try:
+                #     guess = int (input ("Please guess the number!"))
+                # except ValueError:
+                #     while True:
+                #         print("Please choose a number!")
+                #         guess = int (input ("Please guess the number!"))
+            elif guess < chosen_num:
+                print ("too low")
+                turns_hard -= 1
+                no_of_turns_availed=5-turns_hard
+                print (f"your remaining turns are {turns_hard} ")
+                guess = int (input ("Please guess the number!"))
+                # try:
+                #     guess = int (input ("Please guess the number!"))
+                # except ValueError:
+                #     while True:
+                #         print("Please choose a number!")
+                #         guess = int (input ("Please guess the number!"))
+            elif guess == chosen_num:
+                print ("You won!")
+                break
+    except ValueError:
+        while True:
+            print ("Please select a number not a string!")
+            print(f"Your no: of turns availed are{no_of_turns_availed}")
+            #guess = int (input ("Please guess the number!"))
+            return hard()
+
+
+
+def easy():
+    global turns_easy
+    no_of_turns_availed=10-turns_easy
+    try:
+        guess = int (input ("Please guess the number!"))
+        while turns_easy >= 1:
+            if turns_easy == 1 and guess != chosen_num:
+                print ("You lost")
+                print (f"The correct number is: {chosen_num} ")
+                break
+            elif guess > chosen_num:
+                print ("too high")
+                turns_easy -= 1
+                no_of_turns_availed = 10 - turns_easy
+                print (f"your remaining turns are {turns_easy} ")
+                guess = int (input ("Please guess the number!"))
+                # try:
+                #     guess = int (input ("Please guess the number!"))
+                # except ValueError:
+                #     while True:
+                #         print("Please choose a number!")
+                #         guess = int (input ("Please guess the number!"))
+            elif guess < chosen_num:
+                print ("too low")
+                turns_easy -= 1
+                no_of_turns_availed=10-turns_easy
+                print (f"your remaining turns are {turns_easy} ")
+                guess = int (input ("Please guess the number!"))
+                # try:
+                #     guess = int (input ("Please guess the number!"))
+                # except ValueError:
+                #     while True:
+                #         print("Please choose a number!")
+                #         guess = int (input ("Please guess the number!"))
+            elif guess == chosen_num:
+                print ("You won!")
+                break
+    except ValueError:
+        while True:
+            print ("Please select a number not a string!")
+            print(f"Your no: of turns availed are{no_of_turns_availed}")
+            #guess = int (input ("Please guess the number!"))
+            return easy()
+
+
+
+def game():
+    level = str (input ("What level you want to play hard or easy?")).lower()
+    if level == "easy":
+        return easy()
+    elif level=="hard":
+        return hard()
+    while level != "easy" and level != "hard":
+        print("Please chose again!")
+        level = str (input ("What level you want to play hard or easy?")).lower()
+        if level == "easy":
+            return easy ()
+        elif level == "hard":
+            return hard ()
+
+
+game() 
